@@ -1293,17 +1293,14 @@ input {
   }
 
   .msg-list {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(250px, 72vw);
-    gap: 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    display: block;
+    overflow-x: visible;
+    overflow-y: visible;
     padding: 0 14px 14px;
   }
 
   .msg-row {
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 
   .pane-header,
@@ -1397,10 +1394,6 @@ input {
   .sidebar-hero-mark {
     width: 64px;
     height: 64px;
-  }
-
-  .msg-list {
-    grid-auto-columns: calc(100vw - 52px);
   }
 
   .pane-header,
