@@ -265,6 +265,10 @@ input {
   gap: 18px;
 }
 
+.body.body-full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .sidebar,
 .main {
   border-radius: var(--radius-xl);

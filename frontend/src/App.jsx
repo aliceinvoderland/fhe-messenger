@@ -21,6 +21,7 @@ export default function App() {
     setTimeout(() => setToasts(t => t.filter(x => x.id !== id)), 4500);
   }, []);
 
+  const showSidebar = wallet.isConnected && wallet.isCorrectNetwork;
   const messages = tab === "inbox" ? messenger.inbox : messenger.outbox;
   const selMsg   = selected !== null
     ? [...messenger.inbox, ...messenger.outbox].find(m => m.id === selected)
@@ -73,10 +74,10 @@ export default function App() {
       </header>
 
       {/* ── Body ── */}
-      <div className="body">
+      <div className={`body ${showSidebar ? "" : "body-full"}`}>
 
         {/* Sidebar */}
-        {wallet.isConnected && wallet.isCorrectNetwork && (
+        {showSidebar && (
           <aside className="sidebar">
             <div className="sidebar-hero">
               <div className="sidebar-hero-copy">
@@ -193,15 +194,15 @@ export default function App() {
             </div>
           )}
 
-          {wallet.isConnected && wallet.isCorrectNetwork && compose && (
+          {showSidebar && compose && (
             <Compose wallet={wallet} txPending={messenger.txPending} onSend={handleSend} onCancel={() => setCompose(false)} />
           )}
 
-          {wallet.isConnected && wallet.isCorrectNetwork && !compose && selMsg && (
+          {showSidebar && !compose && selMsg && (
             <ThreadView key={selMsg.id} message={selMsg} wallet={wallet} onDecrypt={messenger.decryptMessage} txPending={messenger.txPending} />
           )}
 
-          {wallet.isConnected && wallet.isCorrectNetwork && !compose && !selMsg && (
+          {showSidebar && !compose && !selMsg && (
             <div className="welcome">
               <div className="welcome-card">
                 <div className="big">
